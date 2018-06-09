@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mud</title>
+    <style>
+        /* 学艺不精，三栏布局和双飞翼布局还要好好研究一下 */
+        /*动画中使用requestAnimationFrame，防止丢帧页面优化*/
+        #container{
+            overflow: hidden;
+            padding-left: 100px;
+            padding-right: 100px;
+            position: relative;
+        }
+        #mainStage{
+            height: 666px;
+            width: 100%;
+            float: left;
+            border: 2px solid black;
+        }
+        #myCanvas{
+            margin: auto;
+            position: absolute;
+            z-index: 1;
+        }
+        #myRole{
+            position: absolute;
+            z-index: 0;
+        }
+        #blue{
+            position: relative;
+            width: 100px;
+            height: 670px;
+            float: left;
+            background-color: blue;
+            margin-left: -100%;
+            right: 104px;
+            
+        }
+        #red{
+            width: 100px;
+            height: 670px;
+            margin-right:-100%;
+            float: left;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+        <div id="container">
+                <div id="mainStage">
+                    <canvas id="myCanvas" height="661">your browser does not support the canvas tag</canvas>
+                    <canvas id="myRole" height="661"></canvas>
+                </div>
+                <div id="blue"></div>
+                <div id="red"></div>
+        </div>
+
+</body>
+<script src="./paint.js"></script>
+
+</html>
