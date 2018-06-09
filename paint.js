@@ -25,12 +25,12 @@ function DrawMap() {
     ctx.fillRect(100, 70, 100, 20);
     ctx.fillRect(100, 290, 150, 20);
     ctx.fillRect(210, 185, 150, 20);
-    ctx.fillRect(330, 125, 150, 20);
+    ctx.fillRect(330, 125, 150, 20);//跳跃版
     ctx.fillRect(282, 400, 500, 20); //中间一决斗台
     ctx.fillRect(840, 260, 150, 20);
     ctx.fillRect(730, 200, 150, 20);
     ctx.fillRect(550, 300, 150, 20);
-    ctx.fillRect(830, 120, 150, 20);
+    ctx.fillRect(830, 140, 150, 20);
     ctx.fillRect(874, 430, 100, 20);
     ctx.fillRect(874, 580, 150, 20); //右起始台阶
     //function drawPlatform()
@@ -55,37 +55,37 @@ function clear() { // clear canvas function
 // })();
 //以上为requesetAnimationFrame兼容性处理及画布基本内容
 function isOnEdge(x,y){//判断是否在板块上
-    if(x>=40 && x<=190 && y>=550 && y<=560){
+    if(x>=40 && x<=190 && y>=560 && y<=570){
         return 1;
     }else if(x>=100 && x<=200 && y>=40 && y<=50){
         return 1;
     }else if(x>=60 && x<=210 && y>=430 && y<=440){
         return 1;
-    }else if(x>=100 && x<=250 && y>=265 && y<=275){
+    }else if(x>=100 && x<=250 && y>=270 && y<=280){
         return 1;
-    }else if(x>=210 && x<=330 && y>=155 && y<=165){
+    }else if(x>=210 && x<=350 && y>=165 && y<=175){
         return 1;
-    }else if(x>=330 && x<=480 && y>=95 &&y<=105){
+    }else if(x>=330 && x<=480 && y>=105 &&y<=115){//跳跃版
         return 1;
-    }else if(x>=282 && x<=782 && y>=370 && y<=380){
+    }else if(x>=282 && x<=782 && y>=380 && y<=390){
         return 1;
-    }else if(x>=840 && x<=990 && y>=230 && y<=240){
+    }else if(x>=840 && x<=990 && y>=240 && y<=250){
         return 1;
-    }else if(x>=730 && x<=880 && y>=170 &&y<=180){
+    }else if(x>=730 && x<=880 && y>=180 &&y<=190){
         return 1;
-    }else if(x>=550 && x<=700 && y>=270 && y<=280){
+    }else if(x>=550 && x<=700 && y>=280 && y<=290){
         return 1;
-    }else if(x>=830 && x<=980 && y>=90 && y<=100){
+    }else if(x>=830 && x<=980 && y>=120 && y<=160){
         return 1;
-    }else if(x>=874 && x<=974 && y>=70 && y<=80){
+    }else if(x>=874 && x<=974 && y>=410 && y<=420){
         return 1;
-    }else if(x>=874 && x<=1024 && y>=120 && y<=130){
+    }else if(x>=874 && x<=1024 && y>=560 && y<=600){
         return 1;
     }
     return 0;
 }
 var ball = {
-    x: 40,
+    x: 880,
     y: 560,
     r: 20,
     vx: 10,
@@ -97,9 +97,7 @@ var ball = {
     color: "#005588",
     jump : function(){
         var self = this;//终于自己也是碰到这档子问题了，闭包带来的this混乱
-        if(self.towards!=3){
-            return ;
-        }
+        self.towards = 3;//跳起来的过程中无法做下坠运动
         var jumpTimer = setInterval(function(){
             if(self.jcnt<5 && self.jcnt>=0){
                 self.y -= self.jy;
@@ -109,6 +107,12 @@ var ball = {
             else if(self.jcnt >= self.jheight/2 && self.jcnt < self.jheight){
                 self.y += self.jy;
                 self.jcnt++;
+                if(isOnEdge(self.x,self.y)){
+                    clearInterval(jumpTimer);
+                    self.jcnt = 0;
+                    self.towards = 0;
+                    return;
+                }
             }else if(self.jcnt == self.jheight){
                 clearInterval(jumpTimer);
                 self.jcnt = 0;
@@ -119,10 +123,7 @@ var ball = {
     },
     fall:function(){
         var self = this;
-        console.log(self.towards);
-        if(self.towards!=4){
-            return;
-        }
+        self.towards = 4;
         var fallTimer = setInterval(function(){
             self.y +=5;
             if(isOnEdge(self.x,self.y)){
@@ -133,6 +134,7 @@ var ball = {
         },10)
     }
 }
+
 function getDirection(event){
     var keyCode =  event.keyCode || event.which;
     switch(keyCode){
@@ -140,7 +142,6 @@ function getDirection(event){
         case 38:
         case 269: //up
             return 'up';
-            console.log(1);
             break;
         case 2:
         case 40:
@@ -184,28 +185,52 @@ document.onkeydown = function(event){
     var action = getDirection(event);
     switch(action){
         case "up": 
-        ball.towards = 3;//这里爬梯的状态也被归到3里
         if(judgeUp(ball.x,ball.y)){
+            ball.towards = 0;
             ball.y -= 10;
         }else{
-            ball.jump();
+            if(ball.towards != 3 && ball.towards !=4){
+                ball.jump();
+            }
         }
         break;
         case "down": ball.y += 10;break;
         case "left": 
         if(isOnEdge(ball.x,ball.y)){
             ball.x -=10;
-        }else if(!judgeUp(ball.x,ball.y)){
-            ball.towards = 4;
-            ball.fall();
+            ball.towards = 0;
+        }else if(ball.towards!=3 && ball.towards!=4 && !judgeUp(ball.x,ball.y)){
+            ball.fall()
+        }else if (ball.towards == 3){
+            var moveleft = setInterval(function(){
+                ball.x -= 3;
+                if(ball.towards == 0){
+                    clearInterval(moveleft);
+                    if(!isOnEdge(ball.x,ball.y)){
+                        ball.fall();
+                    } 
+                    return ;
+                }
+            },10)
         }
         break;
         case "right":
         if(isOnEdge(ball.x,ball.y)){
             ball.x += 10;
-        }else if(!judgeUp(ball.x,ball.y) && ball.towards!=3){
-            ball.towards = 4;
-            ball.fall();
+            ball.towards  = 0;
+        }else if(ball.towards!=4 && ball.towards!=3 && !judgeUp(ball.x,ball.y)){
+            ball.fall();//下落要求不能在阶梯上，不能在跳跃中，不能在下落中（下落只有一个）
+        }else if (ball.towards == 3){
+            var moveright = setInterval(function(){
+                ball.x += 3;
+                if(ball.towards == 0){
+                    clearInterval(moveright);
+                    if(!isOnEdge(ball.x,ball.y)){
+                        ball.fall();
+                    } 
+                    return ;
+                }
+            },10)
         }
         break;
         default :console.log('hhh');
@@ -224,4 +249,4 @@ function render(ctr) {
 }
 setInterval(function () {
     render(ctr);
-}, 50);
+}, 10);
