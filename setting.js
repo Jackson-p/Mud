@@ -93,12 +93,12 @@ function judgeUp(x,y){ //判断在某个地点是跳起还是爬梯
 function transImage(status){//根据当前角色的运动状态去改变其在图片中的状态
     var transres = [];
     switch(status){
-        case 0 : transres = [80,0];break;
-        case 1 : transres = [80,0];break;
-        case 2 : transres = [90,0];break;
-        case 3 : transres = [100,0];break;
-        case 4 : transres = [-100,0];break;
-        case 5 : transres = [-250,0];break;
+        case 0 : transres = [70,0];break;
+        case 1 : transres = [75,0];break;
+        case 2 : transres = [100,0];break;
+        case 3 : transres = [110,0];break;
+        case 4 : transres = [-110,0];break;
+        case 5 : transres = [-245,0];break;
         default:console.log('hhh');break;
     }
     return transres;

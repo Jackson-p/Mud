@@ -5,8 +5,8 @@ function drawRole(Roles){
 }
 //以下为角色ctr绘制部分
 var ball = {
-    x: 880,
-    y: 560,
+    x: 290,
+    y: 380,
     Imagex:0,
     Imagey:0,//这两个用来控制当前人物是个什么样子
     r: 20,
@@ -111,7 +111,14 @@ document.onkeydown = function(event){
         case "down": ball.y += 10;break;
         case "left": 
         if(isOnEdge(ball.x,ball.y)){
+            ball.Imagey = 110;
             ball.x -=10;
+            ball.Imagex += transImage(ball.status)[0];
+            ball.status += 1;
+            if(ball.status == 5){
+                ball.status = 1;
+                ball.Imagex = 70;
+            }
             ball.towards = 1;
         }else if(ball.towards!=3 && ball.towards!=4 && !judgeUp(ball.x,ball.y)){
             ball.fall()
@@ -133,10 +140,11 @@ document.onkeydown = function(event){
         if(isOnEdge(ball.x,ball.y)){
             ball.x += 10;
             ball.Imagex += transImage(ball.status)[0];
+            ball.Imagey += transImage(ball.status)[1];
             ball.status += 1;
             if(ball.status == 5){
                 ball.status = 1;
-                ball.Imagex = 80;
+                ball.Imagex = 70;
             }
             ball.towards  = 2;
         }else if(ball.towards!=4 && ball.towards!=3 && !judgeUp(ball.x,ball.y)){
@@ -174,10 +182,11 @@ function render() {
 }
 setInterval(function () {
     render();
-}, 5);
+}, 10);//这里可以调高闪营造闪电效果
 setInterval(function(){
     if(isOnEdge(ball.x,ball.y) && ball.status <= 4 && ball.status >0 && !ball.stop){
         ball.status = 0;
         ball.Imagex = 0;
+        ball.Imagey = 0;
     }
-},1000)
+},800)
