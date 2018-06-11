@@ -20,22 +20,35 @@
             width: 100%;
             float: left;
             border: 2px solid black;
+            background-color: #000000;
         }
         #myCanvas{
             margin: auto;
             position: absolute;
-            z-index: 1;
+            z-index: 0;
         }
         #myRole{
             position: absolute;
-            z-index: 0;
+            z-index: 1;
+        }
+        #myEnemy{
+            position: absolute;
+            z-index: 2;
+        }
+        #myBall{
+            position: absolute;
+            z-index: 3;
+        }
+        #mySpecial{
+            position: absolute;
+            z-index: 4;
         }
         #blue{
             position: relative;
             width: 100px;
             height: 670px;
             float: left;
-            background-color: blue;
+            background-color: rgb(51, 51, 68);
             margin-left: -100%;
             right: 104px;
             
@@ -45,7 +58,7 @@
             height: 670px;
             margin-right:-100%;
             float: left;
-            background-color: red;
+            background-color: rgb(51, 51, 68);
         }
     </style>
 </head>
@@ -54,6 +67,9 @@
                 <div id="mainStage">
                     <canvas id="myCanvas" height="661">your browser does not support the canvas tag</canvas>
                     <canvas id="myRole" height="661"></canvas>
+                    <canvas id="myEnemy" height="661"></canvas>
+                    <canvas id="myBall" height="661"></canvas>
+                    <canvas id="mySpecial" height="661"></canvas>
                 </div>
                 <div id="blue"></div>
                 <div id="red"></div>
@@ -61,6 +77,8 @@
 
 </body>
 <script src="./setting.js"></script>
-<script src="./paint.js"></script>
-
+<script src="./role.js"></script>
+<script src="./enemy.js"></script>
+<script src="./ball.js"></script>
+<script src="./special.js"></script>
 </html>

@@ -1,11 +1,21 @@
 //这里增加一部分考虑，看可不可以通过requestAnimationFrame来做，研究下
 var canvas = document.getElementById('myCanvas');
 var role = document.getElementById('myRole');
-var timer;
+var enemy = document.getElementById('myEnemy');
+var ballc = document.getElementById('myBall');
+var specc = document.getElementById('mySpecial');
 var ctx = canvas.getContext('2d');
 var ctr = role.getContext('2d'); //既然不打算用图片只能用两层画布了
+var cte = enemy.getContext('2d');//第三层用来放泥潭和小怪物
+var ctb = ballc.getContext('2d');//我是真的没有想用第四层，希望以后有好的解决方案
+var cts = specc.getContext('2d');//好吧我已经不知羞耻了。。。
 canvas.width = document.getElementById('mainStage').clientWidth;
-role.width = document.getElementById('mainStage').clientWidth;
+role.width = canvas.width;
+enemy.width = canvas.width;
+ballc.width = canvas.width;
+specc.width = canvas.width;
+ctx.fillStyle = "#000000";
+ctx.fillRect(0,0,canvas.width,canvas.height);
 
 function drawLadder(x, y, height) {
     var wid = 30;
@@ -19,7 +29,7 @@ function drawLadder(x, y, height) {
 
 function DrawMap() {
     //地图的绘制尽量控制在宽1064，高661之间
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#7f7f7f";
     //一二个参数是起点位置，后两个分别为宽高
     ctx.fillRect(40, 580, 150, 20); //左起始台阶
     ctx.fillRect(60, 450, 150, 20);
