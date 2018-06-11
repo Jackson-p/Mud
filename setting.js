@@ -51,7 +51,7 @@ function clear() { // clear canvas function
 function isOnEdge(x, y) { //判断是否在板块上
     if (x >= 40 && x <= 190 && y >= 560 && y <= 570) {
         return 1;
-    } else if (x >= 100 && x <= 200 && y >= 40 && y <= 50) {
+    } else if (x >= 100 && x <= 200 && y >= 45 && y <= 50) {
         return 1;
     } else if (x >= 60 && x <= 210 && y >= 430 && y <= 440) {
         return 1;
@@ -86,6 +86,18 @@ function judgeUp(x,y){ //判断在某个地点是跳起还是爬梯
     }else if(x>=950 && x<=970 && y>=245 && y<=410){
         return 1;
     }else if(x>=910 && x<=930 &&y>=420 && y<=560){
+        return 1;
+    }
+    return 0;
+}
+function judgeDown(x,y){ //判断在某个地点是下蹲还是下梯，我也不想写两套，可是有视觉误差啊喂。。。
+    if(x>=110 && x<=130 && y>=430 && y<=550){
+        return 1;
+    }else if(x>=160 && x<=180 && y>=50 && y<=420){
+        return 1;
+    }else if(x>=950 && x<=970 && y>=235 && y<=400){
+        return 1;
+    }else if(x>=910 && x<=930 &&y>=410 && y<=550){
         return 1;
     }
     return 0;
