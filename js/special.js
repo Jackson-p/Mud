@@ -1,3 +1,4 @@
+
 var special ={
     x:1000*Math.random(),
     y:1000*Math.random(),
@@ -28,6 +29,7 @@ function isGetted(){
         console.log(special.blstatus)
         if(special.blstatus == 1){
             blue.life += 1;
+            lifes.innerHTML = "X"+blue.life;
             console.log(blue.life);
         }else if(special.blstatus == 2){
             balls = [];

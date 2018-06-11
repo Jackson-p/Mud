@@ -6,61 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mud</title>
-    <style>
-        /* 学艺不精，三栏布局和双飞翼布局还要好好研究一下 */
-        /*动画中使用requestAnimationFrame，防止丢帧页面优化*/
-        #container{
-            overflow: hidden;
-            padding-left: 100px;
-            padding-right: 100px;
-            position: relative;
-        }
-        #mainStage{
-            height: 666px;
-            width: 100%;
-            float: left;
-            border: 2px solid black;
-            background-color: #000000;
-        }
-        #myCanvas{
-            margin: auto;
-            position: absolute;
-            z-index: 0;
-        }
-        #myRole{
-            position: absolute;
-            z-index: 1;
-        }
-        #myEnemy{
-            position: absolute;
-            z-index: 2;
-        }
-        #myBall{
-            position: absolute;
-            z-index: 3;
-        }
-        #mySpecial{
-            position: absolute;
-            z-index: 4;
-        }
-        #blue{
-            position: relative;
-            width: 100px;
-            height: 670px;
-            float: left;
-            background-color: rgb(51, 51, 68);
-            margin-left: -100%;
-            right: 104px;
-            
-        }
-        #red{
-            width: 100px;
-            height: 670px;
-            margin-right:-100%;
-            float: left;
-            background-color: rgb(51, 51, 68);
-        }
-    </style>
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
         <div id="container">
@@ -71,14 +17,21 @@
                     <canvas id="myBall" height="661"></canvas>
                     <canvas id="mySpecial" height="661"></canvas>
                 </div>
-                <div id="blue"></div>
+                <div id="blue">
+                    <div id="timer"></div>
+                    <img src="./img/11.png" />
+                    <div id="life">
+                        <img src="./img/heart.png" />
+                        <h2>X1</h2>
+                    </div>
+                </div>
                 <div id="red"></div>
         </div>
 
 </body>
-<script src="./setting.js"></script>
-<script src="./role.js"></script>
-<script src="./enemy.js"></script>
-<script src="./ball.js"></script>
-<script src="./special.js"></script>
+<script src="js/setting.js"></script>
+<script src="js/role.js"></script>
+<script src="js/enemy.js"></script>
+<script src="js/ball.js"></script>
+<script src="js/special.js"></script>
 </html>

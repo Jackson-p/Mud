@@ -1,3 +1,16 @@
+var lifesfa = document.getElementById('life');
+var lifes = lifesfa.children[1];
+//上述两行为了改命
+var t = 0;
+var timer = document.getElementById('timer');
+setInterval(function(){
+    t+=1;
+    timer.innerHTML =  "Time:" +t;
+},1000)
+var Maxscore = document.getElementById('red');
+var storage = window.localStorage;
+Maxscore.innerHTML ="最高分：" + storage.getItem('Maxscore');
+//以上为基础dom操作
 //这里增加一部分考虑，看可不可以通过requestAnimationFrame来做，研究下
 var canvas = document.getElementById('myCanvas');
 var role = document.getElementById('myRole');

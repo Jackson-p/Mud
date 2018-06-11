@@ -30,14 +30,26 @@ function update(){
         //balls[i].vy += balls[i].ay;
         balls[i].posx += balls[i].vx;
         balls[i].posy += balls[i].vy;
-        if(Math.abs(balls[i].posx - blue.x) <= 20 && Math.abs(balls[i].posy - blue.y) <=20 ){
+        if(Math.abs(balls[i].posx - blue.x) <= 10 && Math.abs(balls[i].posy - blue.y) <=10 ){
             blue.life--;
+            lifes.innerHTML = "X"+blue.life;
             if(blue.life<=0){
                 alert('凉');
+                if(!storage.getItem('Maxscore')){
+                    storage.setItem('Maxscore',t);
+                }else if(t>storage.getItem('Maxscore')){
+                    storage.setItem('Maxscore',t);
+                }
                 location.reload();
             }
         }
-        if(blue.y>650){
+        if(blue.y>710){
+            alert('凉');
+            if(!storage.getItem('Maxscore')){
+                storage.setItem('Maxscore',t);
+            }else if(t>storage.getItem('Maxscore')){
+                storage.setItem('Maxscore',t);
+            }
             location.reload();
         }
         if(balls[i].posx <=0 || balls[i].posx >= ballc.width){
