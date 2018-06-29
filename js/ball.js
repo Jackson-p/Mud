@@ -34,7 +34,7 @@ function update(){
             blue.life--;
             lifes.innerHTML = "X"+blue.life;
             if(blue.life<=0){
-                alert('凉');
+                alert('请git clone至本地');
                 if(!storage.getItem('Maxscore')){
                     storage.setItem('Maxscore',t);
                 }else if(t>storage.getItem('Maxscore')){
@@ -45,9 +45,6 @@ function update(){
         }
         if(blue.y>710){
             alert('凉');
-            if(!storage){
-                location.reload();
-            }
             if(!storage.getItem('Maxscore')){
                 storage.setItem('Maxscore',t);
             }else if(t>storage.getItem('Maxscore')){
