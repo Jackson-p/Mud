@@ -43,8 +43,11 @@ function update(){
                 location.reload();
             }
         }
-        if(blue.y>610){
-            //alert('凉');
+        if(blue.y>710){
+            alert('凉');
+            if(!storage){
+                location.reload();
+            }
             if(!storage.getItem('Maxscore')){
                 storage.setItem('Maxscore',t);
             }else if(t>storage.getItem('Maxscore')){
