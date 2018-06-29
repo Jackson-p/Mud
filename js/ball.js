@@ -43,7 +43,7 @@ function update(){
                 location.reload();
             }
         }
-        if(blue.y>710){
+        if(blue.y>610){
             //alert('凉');
             if(!storage.getItem('Maxscore')){
                 storage.setItem('Maxscore',t);
