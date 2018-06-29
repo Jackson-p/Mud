@@ -44,7 +44,7 @@ function update(){
             }
         }
         if(blue.y>710){
-            alert('凉');
+            //alert('凉');
             if(!storage.getItem('Maxscore')){
                 storage.setItem('Maxscore',t);
             }else if(t>storage.getItem('Maxscore')){
