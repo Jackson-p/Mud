@@ -54,7 +54,7 @@ function update(){
             //因为加载github的静态页面需要一定时间，用reload()的手段确实也是很不友好
             t=0;
             blue.x = 130;
-            blue.y = 50;
+            blue.y = 40;
         }
         if(balls[i].posx <=0 || balls[i].posx >= ballc.width){
             // if(balls[i].vx<10){
