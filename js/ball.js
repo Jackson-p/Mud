@@ -47,6 +47,7 @@ function update(){
                 blue.x = 130;
                 blue.y = 40;
                 blue.life = 1;
+                lifes.innerHTML = "X"+blue.life;
             }
         }
         if(blue.y>710){
@@ -63,6 +64,7 @@ function update(){
             blue.x = 130;
             blue.y = 40;
             blue.life = 1;
+            lifes.innerHTML = "X"+blue.life;
         }
         if(balls[i].posx <=0 || balls[i].posx >= ballc.width){
             // if(balls[i].vx<10){
@@ -73,13 +75,7 @@ function update(){
             // balls[i].ax = -balls[i].ax;
             balls[i].vx = -balls[i].vx;
         }
-        if(balls[i].posy >=ballc.height || balls[i].posy <=0){
-            // if(balls[i].vy<10){
-            //     balls[i].vy = -balls[i].vy+10;
-            // }else{
-            //     balls[i].vy = -(balls[i].vy-10);
-            // }
-            //balls[i].ay = -balls[i].ay;
+        if(balls.length >0 && (balls[i].posy >=ballc.height || balls[i].posy <=0)){
             balls[i].vy = -balls[i].vy;
         }
     }
