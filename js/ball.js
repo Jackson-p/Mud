@@ -25,9 +25,6 @@ function renderBall(posx,posy){
     }
 }
 function update(){
-    if(t<0){
-        t=1;
-    }
     for(let i = 0,len = balls.length;i<len;i++){
         //balls[i].vx += balls[i].ax;
         //balls[i].vy += balls[i].ay;
@@ -49,6 +46,7 @@ function update(){
                 t=1;
                 blue.x = 130;
                 blue.y = 40;
+                blue.life = 1;
             }
         }
         if(blue.y>710){
@@ -64,6 +62,7 @@ function update(){
             t=1;
             blue.x = 130;
             blue.y = 40;
+            blue.life = 1;
         }
         if(balls[i].posx <=0 || balls[i].posx >= ballc.width){
             // if(balls[i].vx<10){
