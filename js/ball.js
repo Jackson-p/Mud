@@ -25,6 +25,9 @@ function renderBall(posx,posy){
     }
 }
 function update(){
+    if(t<0){
+        t=1;
+    }
     for(let i = 0,len = balls.length;i<len;i++){
         //balls[i].vx += balls[i].ax;
         //balls[i].vy += balls[i].ay;
@@ -42,6 +45,7 @@ function update(){
                 }
                 //location.reload();
                 //因为加载github的静态页面需要一定时间，用reload()的手段确实也是很不友好
+                balls = [];
                 t=1;
                 blue.x = 130;
                 blue.y = 40;
@@ -56,6 +60,7 @@ function update(){
             }
             //location.reload();
             //因为加载github的静态页面需要一定时间，用reload()的手段确实也是很不友好
+            balls = [];
             t=1;
             blue.x = 130;
             blue.y = 40;
