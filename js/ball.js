@@ -34,17 +34,21 @@ function update(){
             blue.life--;
             lifes.innerHTML = "X"+blue.life;
             if(blue.life<=0){
-                alert('请git clone至本地');
+                alert('游戏结束！您的得分为'+t);
                 if(!storage.getItem('Maxscore')){
                     storage.setItem('Maxscore',t);
                 }else if(t>storage.getItem('Maxscore')){
                     storage.setItem('Maxscore',t);
                 }
-                location.reload();
+                //location.reload();
+                //因为加载github的静态页面需要一定时间，用reload()的手段确实也是很不友好
+                t=0;
+                blue.x = 130;
+                blue.y = 40;
             }
         }
         if(blue.y>710){
-            //alert('凉');
+            alert('游戏结束！您的得分为'+t);
             if(!storage.getItem('Maxscore')){
                 storage.setItem('Maxscore',t);
             }else if(t>storage.getItem('Maxscore')){
