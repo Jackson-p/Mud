@@ -12,6 +12,11 @@ var storage = window.localStorage;
 Maxscore.innerHTML ="最高分：" + storage.getItem('Maxscore');
 //以上为基础dom操作
 //这里增加一部分考虑，看可不可以通过requestAnimationFrame来做，研究下
+// window.RAF = (function(){
+//     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {window.setTimeout(callback, 1000 / 60); };
+// })();
+
+
 var canvas = document.getElementById('myCanvas');
 var role = document.getElementById('myRole');
 var enemy = document.getElementById('myEnemy');

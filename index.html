@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+        <script src="js/stats.min.js"></script>
+        <script>
+            var stats = new Stats();
+            stats.setMode(0);
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '15px';
+            stats.domElement.style.top = '180px';
+            stats.domElement.style.zIndex = '5';
+            document.body.appendChild( stats.domElement );
+        </script>
         <div id="container">
                 <div id="mainStage">
                     <canvas id="myCanvas" height="661">your browser does not support the canvas tag</canvas>

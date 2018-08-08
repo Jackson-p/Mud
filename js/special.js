@@ -6,7 +6,7 @@ var special ={
 }
 var specialImg = new Image();
 function drawSpecial(){
-    cts.clearRect(0, 0, cts.canvas.width, cts.canvas.height);
+    cts.clearRect(special.x, special.y, 110, 110);
     special.x = 1000* Math.random();
     special.y = 1000* Math.random();
     var selec = Math.floor(10*Math.random());
@@ -22,7 +22,7 @@ function drawSpecial(){
     }
 }
 function isGetted(){
-    if(Math.abs(blue.x - special.x) <= 50 && Math.abs(blue.y - special.y) <=40 ){
+    if(Math.abs(blue.x - special.x) <= 40 && Math.abs(blue.y - special.y) <=40 ){
         cts.clearRect(0, 0, cts.canvas.width, cts.canvas.height);
         special.x =-200;
         special.y =-200;//吃掉了就从页面上扔出去

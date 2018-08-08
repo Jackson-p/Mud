@@ -1,4 +1,30 @@
-var balls = [];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #000000;
+        }
+        #testcanvas{
+            position: absolute;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <script src="js/stats.min.js"></script>
+    <canvas id="myBall" width="1000" height="661" ></canvas>
+    <div id="testcanvas"></div>
+    <script>
+        var ballc = document.getElementById('myBall');
+        var ctb = ballc.getContext('2d');
+    var balls = [];
+        var tb = document.getElementById('testcanvas');
+    
 const colors = ["#33B5E5","#0099CC","AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"];
 function ball (posx, posy, useCache){
     this.vx = 5;
@@ -26,6 +52,7 @@ ball.prototype = {
             ctb.fill();
             ctb.restore();//用来恢复canvas画笔原来的状态，使变化受控
         }else {
+            tb.appendChild(this.cacheCanvas);
             ctb.drawImage(this.cacheCanvas,this.posx-10,this.posy-10);
         }
     },
@@ -35,7 +62,7 @@ ball.prototype = {
         var colorTemp = colors[Math.floor(10*Math.random())];
         this.cacheCtb.fillStyle = colorTemp;
         this.cacheCtb.beginPath();
-        this.cacheCtb.arc(10, 10, 10, 0, 2 * Math.PI);
+        this.cacheCtb.arc(10, 10, 10, 0, 2 * Math.PI);//因为半径是10
         this.cacheCtb.closePath();
         this.cacheCtb.fill();
         this.cacheCtb.restore();
@@ -43,56 +70,6 @@ ball.prototype = {
     move:function(){
         this.posx += this.vx;
         this.posy += this.vy;
-        if(Math.abs(this.posx - blue.x) <= 20 && Math.abs(this.posy - blue.y) <=10 ){
-            blue.life--;
-            lifes.innerHTML = "X"+blue.life;
-            if(blue.life<=0){
-                clearInterval(updateHandler);
-                if(!storage.getItem('Maxscore')){
-                    storage.setItem('Maxscore',t);
-                }else if(t>storage.getItem('Maxscore')){
-                    storage.setItem('Maxscore',t);
-                }
-                alert('游戏结束！您的得分为'+t);
-                location.reload();
-                // balls = [];
-                // t=1;
-                // blue.x = 130;
-                // blue.y = 40;
-                // blue.life = 1;
-                // lifes.innerHTML = "X"+blue.life;
-            }
-        }
-        if(blue.y>710){
-            blue.y = -1000;
-            clearInterval(updateHandler);
-            setTimeout(function(){
-                alert('游戏结束！您的得分为'+t);
-                location.reload();
-            },1000);
-            
-            if(!storage.getItem('Maxscore')){
-                storage.setItem('Maxscore',t);
-            }else if(t>storage.getItem('Maxscore')){
-                storage.setItem('Maxscore',t);
-            }
-            //因为加载github的静态页面需要一定时间，用reload()的手段确实也是很不友好
-            // balls = [];
-            // t=1;
-            // blue.x = 130;
-            // blue.y = 40;
-            // blue.life = 1;
-            // lifes.innerHTML = "X"+blue.life;
-        }
-        if(this.posx <=0 || this.posx >= ballc.width){
-            // if(this.vx<10){
-            //     this.vx = -this.vx+10;
-            // }else{
-            //     this.vx = -(this.vx-10);
-            // }   
-            // this.ax = -this.ax;
-            this.vx = -this.vx;
-        }
         if(balls.length >0 && (this.posy >=ballc.height || this.posy <=0)){
             this.vy = -this.vy;
         }
@@ -119,9 +96,8 @@ function update(){
         balls[i].move();
     }
 }
-var updateHandler = setInterval(function(){
+setInterval(function(){
     update();
-    stats.update();
 },50);
 // function loop(){
 //     update();
@@ -133,4 +109,8 @@ var updateHandler = setInterval(function(){
 // loop();
 setInterval(function(){
     addBall();
-},4000);
+},4000);    
+        
+    </script>
+</body>
+</html>
