@@ -23,6 +23,16 @@ setInterval(function(){
 
 ![图](img/show.png)
 
+### 优化
+
+球很多很多的时候（一般人也玩不到那个时候），会有卡顿于是看了下[canvas性能优化](https://blog.csdn.net/zyz511919766/article/details/7401792/)
+
+大体思路：
+
+1、避免canvas整体重绘
+
+2、缓存机制
+
 ## 不足：
 
 >1、写这个东西居然用了5层画布。。。，所有有关基础画布设置和DOM操作定义变量部分，和一些控制参数的部分都放到了setting.js里
